@@ -37,5 +37,5 @@ Then register the integration in:
 ## Links
 
 - [SeaTable](https://seatable.com/)
-- [SeaTable API Documentation](https://developer.seatable.com/)
+- [SeaTable API Documentation](https://api.seatable.com/)
 - [Budibase PR #18323](https://github.com/Budibase/budibase/pull/18323)
