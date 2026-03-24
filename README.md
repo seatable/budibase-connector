@@ -15,7 +15,7 @@ A [Budibase](https://budibase.com/) custom datasource plugin for [SeaTable](http
 
 ### Option 1: Upload tar.gz
 
-1. Download the latest `.tar.gz` from the [Releases](https://github.com/seatable/budibase-connector/releases) page
+1. Download [`budibase-datasource-seatable-1.0.0.tar.gz`](https://github.com/seatable/budibase-connector/releases/latest) from the latest release
 2. In Budibase, go to **Settings > Plugins** and upload the file
 
 ### Option 2: Plugins directory
@@ -34,19 +34,19 @@ The plugin automatically exchanges the API token for a short-lived base access t
 
 ```bash
 # Install dependencies
-yarn install
+npm install
 
 # Build the plugin (outputs dist/plugin.min.js + .tar.gz)
-yarn build
+npm run build
 
 # Watch mode
-yarn watch
+npm run watch
 
 # Run unit tests
-yarn test
+npm run test
 
 # Run integration tests (requires a running SeaTable instance)
-INTEGRATION=true SEATABLE_SERVER_URL=http://localhost SEATABLE_API_TOKEN=... yarn test:integration
+INTEGRATION=true SEATABLE_SERVER_URL=http://localhost SEATABLE_API_TOKEN=... npm run test:integration
 ```
 
 ### Integration tests
