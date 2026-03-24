@@ -49,13 +49,9 @@ yarn test
 INTEGRATION=true SEATABLE_SERVER_URL=http://localhost SEATABLE_API_TOKEN=... yarn test:integration
 ```
 
-### Local SeaTable for testing
+### Integration tests
 
-```bash
-docker compose -f docker-compose.seatable-test.yml up -d
-```
-
-Then create a base, generate an API token, and run the integration tests.
+The integration tests require a running SeaTable instance. Set up a local instance following the [SeaTable Admin Manual](https://admin.seatable.com/), then create a base and an API token to run the tests.
 
 ## Links
 
