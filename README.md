@@ -1,41 +1,64 @@
-# SeaTable Connector for Budibase
+# SeaTable Datasource Plugin for Budibase
 
-A native [Budibase](https://budibase.com/) datasource integration for [SeaTable](https://seatable.com/) — the open-source database platform that's easy like a spreadsheet and powerful like a database.
+A [Budibase](https://budibase.com/) custom datasource plugin for [SeaTable](https://seatable.com/).
+
+> This plugin works with **self-hosted Budibase** instances only. Budibase Cloud does not support custom datasource plugins.
 
 ## Features
 
-- **Create** — Insert a new row (customisable fields)
-- **Read** — List rows with optional view filter and record limit
-- **Update** — Update a row by ID (customisable fields)
-- **Delete** — Delete a row by ID
-- **testConnection** — Validates credentials via token exchange + metadata fetch
-
-## Authentication
-
-The connector uses SeaTable's **API Token** authentication:
-
-1. In SeaTable, go to your base → **API Token** → create a new token
-2. In Budibase, create a new SeaTable datasource
-3. Enter your **Server URL** (e.g., `https://cloud.seatable.io`) and **API Token**
-4. The connector automatically exchanges the API token for a base access token
+- **Create Row** — Insert a new row with JSON data
+- **List Rows** — Read rows with optional view filter and record limit
+- **Update Row** — Update a row by ID with JSON data
+- **Delete Row** — Delete a row by ID
 
 ## Installation
 
-### For Budibase PR
+### Option 1: Upload tar.gz
 
-Copy `seatable.ts` into the Budibase source:
+1. Download the latest `.tar.gz` from the [Releases](https://github.com/seatable/budibase-connector/releases) page
+2. In Budibase, go to **Settings > Plugins** and upload the file
+
+### Option 2: Plugins directory
+
+Mount or copy the `.tar.gz` into your Budibase plugins directory and set the `PLUGINS_DIR` environment variable.
+
+## Configuration
+
+1. In SeaTable, go to your base and create an **API Token** (read-write)
+2. In Budibase, add a new **SeaTable** datasource
+3. Enter the **Server URL** (default: `https://cloud.seatable.io`) and **API Token**
+
+The plugin automatically exchanges the API token for a short-lived base access token.
+
+## Development
 
 ```bash
-cp seatable.ts /path/to/budibase/packages/server/src/integrations/
+# Install dependencies
+yarn install
+
+# Build the plugin (outputs dist/plugin.min.js + .tar.gz)
+yarn build
+
+# Watch mode
+yarn watch
+
+# Run unit tests
+yarn test
+
+# Run integration tests (requires a running SeaTable instance)
+INTEGRATION=true SEATABLE_SERVER_URL=http://localhost SEATABLE_API_TOKEN=... yarn test:integration
 ```
 
-Then register the integration in:
+### Local SeaTable for testing
 
-- `packages/server/src/integrations/index.ts` — add import and register in `DEFINITIONS` and `INTEGRATIONS`
-- `packages/types/src/sdk/datasources.ts` — add `SEATABLE` to `SourceName` enum
+```bash
+docker compose -f docker-compose.seatable-test.yml up -d
+```
+
+Then create a base, generate an API token, and run the integration tests.
 
 ## Links
 
 - [SeaTable](https://seatable.com/)
 - [SeaTable API Documentation](https://api.seatable.com/)
-- [Budibase PR #18323](https://github.com/Budibase/budibase/pull/18323)
+- [Budibase Custom Datasource Docs](https://docs.budibase.com/docs/custom-datasource)

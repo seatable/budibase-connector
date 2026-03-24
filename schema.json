@@ -1,0 +1,83 @@
+{
+  "type": "datasource",
+  "metadata": {
+    "description": "Connect to SeaTable bases and perform CRUD operations on rows.",
+    "displayName": "SeaTable"
+  },
+  "datasource": {
+    "serverUrl": {
+      "type": "string",
+      "required": true,
+      "default": "https://cloud.seatable.io"
+    },
+    "apiToken": {
+      "type": "password",
+      "required": true
+    }
+  },
+  "query": {
+    "create": {
+      "displayName": "Create Row",
+      "readable": true,
+      "fields": {
+        "table": {
+          "type": "string",
+          "required": true
+        },
+        "body": {
+          "type": "json"
+        }
+      }
+    },
+    "read": {
+      "displayName": "List Rows",
+      "readable": true,
+      "fields": {
+        "table": {
+          "type": "string",
+          "required": true
+        },
+        "view": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number",
+          "default": 100
+        }
+      }
+    },
+    "update": {
+      "displayName": "Update Row",
+      "readable": true,
+      "fields": {
+        "table": {
+          "type": "string",
+          "required": true
+        },
+        "rowId": {
+          "type": "string",
+          "required": true
+        },
+        "body": {
+          "type": "json"
+        }
+      }
+    },
+    "delete": {
+      "displayName": "Delete Row",
+      "readable": true,
+      "fields": {
+        "table": {
+          "type": "string",
+          "required": true
+        },
+        "rowId": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  },
+  "hash": "57f064cd7e2d4c7ed553c8bef8f9f0d350f55c1a",
+  "version": "1.0.0"
+}
